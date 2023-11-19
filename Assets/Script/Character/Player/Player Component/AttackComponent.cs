@@ -10,23 +10,18 @@ public class AttackComponent : MonoBehaviour
 
     [SerializeField]
     private float _attackInterval;
+    private float _t;
+    //private WaitForSeconds _waitForAttackInterval;
 
-    private WaitForSeconds _waitForAttackInterval;
-
-    [SerializeField]
-    private MonoBehaviour _currentWeaponMonoBehaviour; // 作? MonoBehaviour 引用
     [SerializeField]
     private GameObject _attackPoint;
-    private IWeapon _currentWeapon; // ??使用的 IWeapon 接口
+
+    private WeaponSwitcher _weaponSwitcher;
 
     private void Awake()
     {
-        _currentWeapon = _currentWeaponMonoBehaviour as IWeapon;
-        if (_currentWeapon == null)
-        {
-            Debug.LogError("The assigned weapon does not implement the IWeapon interface.");
-        }
-        _waitForAttackInterval = new WaitForSeconds(_attackInterval);
+        //_waitForAttackInterval = new WaitForSeconds(_attackInterval);
+        _weaponSwitcher = GetComponent<WeaponSwitcher>();
     }
 
     public void OnAttackEvent()
@@ -64,7 +59,6 @@ public class AttackComponent : MonoBehaviour
     {
         while (true)
         {
-      
             if (_usingGamepad)
             {
                 Vector2 rightStickInput = Gamepad.current.rightStick.ReadValue();
@@ -79,7 +73,7 @@ public class AttackComponent : MonoBehaviour
                 RotateWeapon(mouseInput.normalized);
             }
 
-            yield return _waitForAttackInterval;
+            yield return null;
         }
     }
 
@@ -96,6 +90,15 @@ public class AttackComponent : MonoBehaviour
         {
             rotZ += 180f;
         }
-        _currentWeapon.Attack(rotZ);
+
+        if (_t <= _attackInterval)
+        {
+            _t += Time.deltaTime;
+        }
+        else
+        {
+            _weaponSwitcher.AttackWithCurrentWeapon(rotZ);
+            _t = 0f;
+        }
     }
 }

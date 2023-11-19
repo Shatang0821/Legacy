@@ -86,11 +86,14 @@ public class PlayerInput : ScriptableObject, InputActions.IGamePlayActions
         }
     }
 
-    public void OnPause(InputAction.CallbackContext context)
+    public void OnSwitchWeapon(InputAction.CallbackContext context)
     {
-        
+        if(context.performed)
+        {
+            EventCenter.TriggerEvent("PlayerSwitchWeapon",true);
+        }
     }
 
-    
+
     #endregion
 }

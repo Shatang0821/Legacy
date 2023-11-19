@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour,IWeapon
 {
-
     [SerializeField] private GameObject _swordEnergyPrefab;
     [SerializeField] private float _slashSpeed;
     [SerializeField] private GameObject _swordMuzzle;
+
     public void Attack(float angle)
     {
         FireBullet(angle);

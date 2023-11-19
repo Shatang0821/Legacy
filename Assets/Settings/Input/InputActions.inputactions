@@ -24,9 +24,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
+                    "name": "SwitchWeapon",
                     "type": "Button",
-                    "id": "a4215903-80d0-4039-99d2-a0af415b58ee",
+                    "id": "da1d0704-070b-4d9a-bc33-5abff0b4e659",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -179,28 +179,6 @@
                 },
                 {
                     "name": "",
-                    "id": "02db7177-c284-4e7e-91dc-05ac6ab42db5",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6d8f4922-da80-4dcb-a330-88b8d1f7aa8a",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "74df0862-fb2e-4cab-ac40-dd566350bcfe",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -218,6 +196,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84d43a8d-d9cc-4081-9751-5828f5c25ec1",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
