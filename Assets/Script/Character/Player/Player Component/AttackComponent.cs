@@ -46,7 +46,9 @@ public class AttackComponent : MonoBehaviour
         {
             _usingGamepad = false;
         }
+        _attackInterval = _weaponSwitcher.GetAttackInterval();
         StartCoroutine(nameof(AttackCoroutine));
+        
     }
 
     private void StopAttack()
@@ -90,6 +92,7 @@ public class AttackComponent : MonoBehaviour
         {
             rotZ += 180f;
         }
+
 
         if (_t <= _attackInterval)
         {

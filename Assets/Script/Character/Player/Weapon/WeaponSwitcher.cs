@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,8 @@ public enum WeaponType
 public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] weapons; // ’¼Úg—pGameObject”?
+    private GameObject[] _weaponObjects;
+    private WeaponBase[] _weapons;//ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
     private int currentWeaponIndex = 0;
     private void Awake()
     {
@@ -21,47 +22,57 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void InitializeWeapons()
     {
-        // İ?n?Cœ—¹“–‘O?’†“I•ŠíŠOC‹Ö—pŠ—L•Ší
-        for (int i = 0; i < weapons.Length; i++)
+        _weapons = new WeaponBase[_weaponObjects.Length]; // åˆå§‹åŒ– _weapons æ•°ç»„
+
+        // åœ¨?å§‹?ï¼Œé™¤äº†å½“å‰?ä¸­çš„æ­¦å™¨å¤–ï¼Œç¦ç”¨æ‰€æœ‰æ­¦å™¨
+        for (int i = 0; i < _weaponObjects.Length; i++)
         {
-            weapons[i].SetActive(i == currentWeaponIndex);
+            _weaponObjects[i].SetActive(i == currentWeaponIndex);
+            _weapons[i] = _weaponObjects[i].GetComponent<WeaponBase>();
         }
     }
     public void SwitchWeapon(object param)
     {
         if (param is bool next)
         {
-            // ‹Ö—p“–‘O•Ší
-            weapons[currentWeaponIndex].SetActive(false);
+            _weaponObjects[currentWeaponIndex].SetActive(false);
 
-            // Ø?•Ší
             if (next)
             {
-                currentWeaponIndex = (currentWeaponIndex + 1) % weapons.Length;
+                currentWeaponIndex = (currentWeaponIndex + 1) % _weaponObjects.Length;
             }
             else
             {
                 currentWeaponIndex--;
-                if (currentWeaponIndex < 0) currentWeaponIndex = weapons.Length - 1;
+                if (currentWeaponIndex < 0) currentWeaponIndex = _weaponObjects.Length - 1;
             }
-
-            // ŒƒŠˆV??“I•Ší
-            weapons[currentWeaponIndex].SetActive(true);
+            _weaponObjects[currentWeaponIndex].SetActive(true);
         }
             
     }
 
     public GameObject GetCurrentWeapon()
     {
-        return weapons[currentWeaponIndex];
+        return _weaponObjects[currentWeaponIndex];
     }
 
     public void AttackWithCurrentWeapon(float angle)
     {
-        IWeapon currentWeapon = weapons[currentWeaponIndex].GetComponent<IWeapon>();
-        if (currentWeapon != null)
+        if (_weapons[currentWeaponIndex] != null)
         {
-            currentWeapon.Attack(angle);
+            _weapons[currentWeaponIndex].Attack(angle);
+        }
+    }
+
+    public float GetAttackInterval()
+    {
+        if (_weapons[currentWeaponIndex] != null)
+        {
+            return _weapons[currentWeaponIndex].GetWeaponAttackInterval();
+        }
+        else
+        {
+            return 1;
         }
     }
 }

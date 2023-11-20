@@ -32,4 +32,16 @@ public class AutoDeactivate : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void Deactivate()
+    {
+        if (destroyGameObject)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
