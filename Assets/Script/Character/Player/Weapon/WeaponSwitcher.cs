@@ -55,25 +55,5 @@ public class WeaponSwitcher : MonoBehaviour
     {
         return _weaponObjects[currentWeaponIndex];
     }
-
-    public void AttackWithCurrentWeapon(float angle)
-    {
-        if (_weapons[currentWeaponIndex] != null)
-        {
-            _weapons[currentWeaponIndex].Attack(angle);
-        }
-    }
-
-    public float GetAttackInterval()
-    {
-        if (_weapons[currentWeaponIndex] != null)
-        {
-            return _weapons[currentWeaponIndex].GetWeaponAttackInterval();
-        }
-        else
-        {
-            return 1;
-        }
-    }
 }
 

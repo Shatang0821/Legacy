@@ -1,4 +1,7 @@
+using UnityEngine;
+
 public interface IWeapon
 {
-    void Attack(float angle);
+    void PerformAttack(Vector2 _target);
+    void StopAttack();
 }
