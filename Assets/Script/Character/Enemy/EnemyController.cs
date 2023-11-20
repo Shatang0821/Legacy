@@ -7,15 +7,6 @@ public class EnemyController : MonoBehaviour
 {
     float _t;
     private AttackComponent _attackComponent;
-    private void OnEnable()
-    {
-        EventCenter.Subscribe("EnemyAttack", _attackComponent.OnAttackEvent);
-    }
-
-    private void OnDisable()
-    {
-        EventCenter.Unsubscribe("EnemyAttack", _attackComponent.OnAttackEvent);
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +20,12 @@ public class EnemyController : MonoBehaviour
         if (_t <= 1)
         {
             _t += Time.deltaTime;
+            _attackComponent.OnStopAttackEvent();
         }
         else
         {
-            EventCenter.TriggerEvent("EnemyAttack");
+            _attackComponent.OnAttackEvent();
+            _t = 0;
         }
 
     }

@@ -2,13 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum WeaponType
-{
-    Sword,
-    Staff
-}
-
 public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField]

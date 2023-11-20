@@ -29,6 +29,11 @@ public class Enemy : MonoBehaviour,IDamageable
         }
     }
 
+    protected virtual void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     IEnumerator TrackPlayerCoroutine()
     {
         while(_target.activeSelf)

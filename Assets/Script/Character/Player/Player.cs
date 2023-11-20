@@ -10,13 +10,13 @@ public class Player : MonoBehaviour
     #region COMPONENT
 
     private MoveComponent _moveComponent;
-    private AttackComponent _AttackComponent;
+    private AttackComponent _attackComponent;
     private WeaponSwitcher _weaponSwitcher;
     #endregion
     private void Awake()
     {
         _moveComponent = GetComponent<MoveComponent>();
-        _AttackComponent = GetComponent<AttackComponent>();
+        _attackComponent = GetComponent<AttackComponent>();
         _weaponSwitcher = GetComponent<WeaponSwitcher>();
     }
 
@@ -25,8 +25,8 @@ public class Player : MonoBehaviour
         EventCenter.Subscribe("PlayerMove", _moveComponent.OnMoveEvent);
         EventCenter.Subscribe("PlayerStopMove", _moveComponent.OnStopMoveEvent);
 
-        EventCenter.Subscribe("PlayerAttack", _AttackComponent.OnAttackEvent);
-        EventCenter.Subscribe("PlayerStopAttack", _AttackComponent.OnStopAttackEvent);
+        EventCenter.Subscribe("PlayerAttack", _attackComponent.OnAttackEvent);
+        EventCenter.Subscribe("PlayerStopAttack", _attackComponent.OnStopAttackEvent);
 
         EventCenter.Subscribe("PlayerSwitchWeapon", _weaponSwitcher.SwitchWeapon);
     }
@@ -36,8 +36,8 @@ public class Player : MonoBehaviour
         EventCenter.Unsubscribe("PlayerMove", _moveComponent.OnMoveEvent);
         EventCenter.Unsubscribe("PlayerStopMove", _moveComponent.OnStopMoveEvent);
 
-        EventCenter.Unsubscribe("PlayerAttack", _AttackComponent.OnAttackEvent);
-        EventCenter.Unsubscribe("PlayerStopAttack", _AttackComponent.OnStopAttackEvent);
+        EventCenter.Unsubscribe("PlayerAttack", _attackComponent.OnAttackEvent);
+        EventCenter.Unsubscribe("PlayerStopAttack", _attackComponent.OnStopAttackEvent);
 
         EventCenter.Unsubscribe("PlayerSwitchWeapon", _weaponSwitcher.SwitchWeapon);
     }
