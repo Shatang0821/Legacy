@@ -11,13 +11,13 @@ public class Player : MonoBehaviour
 
     private MoveComponent _moveComponent;
     private AttackComponent _attackComponent;
-    private WeaponSwitcher _weaponSwitcher;
+    private SwitchWeapon _switchWeapon;
     #endregion
     private void Awake()
     {
         _moveComponent = GetComponent<MoveComponent>();
         _attackComponent = GetComponent<AttackComponent>();
-        _weaponSwitcher = GetComponent<WeaponSwitcher>();
+        _switchWeapon = GetComponentInChildren<SwitchWeapon>();
     }
 
     private void OnEnable()
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
         EventCenter.Subscribe("PlayerAttack", _attackComponent.OnAttackEvent);
         EventCenter.Subscribe("PlayerStopAttack", _attackComponent.OnStopAttackEvent);
 
-        EventCenter.Subscribe("PlayerSwitchWeapon", _weaponSwitcher.SwitchWeapon);
+        EventCenter.Subscribe("PlayerSwitchWeapon", _switchWeapon.SelectWeapon);
     }
 
     private void OnDisable()
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         EventCenter.Unsubscribe("PlayerAttack", _attackComponent.OnAttackEvent);
         EventCenter.Unsubscribe("PlayerStopAttack", _attackComponent.OnStopAttackEvent);
 
-        EventCenter.Unsubscribe("PlayerSwitchWeapon", _weaponSwitcher.SwitchWeapon);
+        EventCenter.Unsubscribe("PlayerSwitchWeapon", _switchWeapon.SelectWeapon);
     }
 
     private void Start()

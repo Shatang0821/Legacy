@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EnemyController : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
     float _t;
     private AttackComponent _attackComponent;

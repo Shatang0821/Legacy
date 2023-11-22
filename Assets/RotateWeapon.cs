@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum OwnerType { Player, Enemy }
-
 public class RotateWeapon : MonoBehaviour
 {
     [SerializeField]
@@ -16,11 +14,11 @@ public class RotateWeapon : MonoBehaviour
     private float _fireAngle;
     private Vector2 _targetDirection;
 
-    public OwnerType ownerType;
+    public GameEnums.OwnerType ownerType;
 
     private void OnEnable()
     {
-        if(ownerType == OwnerType.Enemy)
+        if(ownerType == GameEnums.OwnerType.WeaponEnemy)
         {
             _targetTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
@@ -28,7 +26,7 @@ public class RotateWeapon : MonoBehaviour
 
     private void Update()
     {
-        if(ownerType == OwnerType.Player)
+        if(ownerType == GameEnums.OwnerType.Player)
         {
             _targetDirection = GetInputDirection();
         }

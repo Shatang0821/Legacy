@@ -11,14 +11,13 @@ public class AttackComponent : MonoBehaviour
     private float _t;
     //private WaitForSeconds _waitForAttackInterval;
 
-    private WeaponSwitcher _weaponSwitcher;
+    private WeaponManager _weaponManager;
 
-    private RotateWeapon _rotateWeapon;
     private void Awake()
     {
         //_waitForAttackInterval = new WaitForSeconds(_attackInterval);
-        _weaponSwitcher = GetComponent<WeaponSwitcher>();
-        _rotateWeapon = GetComponentInChildren<RotateWeapon>();
+        _weaponManager = GetComponent<WeaponManager>();
+
     }
 
     public void OnAttackEvent()
@@ -35,9 +34,11 @@ public class AttackComponent : MonoBehaviour
 
     private void Attack()
     {
-        _attackInterval = _weaponSwitcher.GetAttackInterval();
+        _attackInterval = _weaponManager.GetAttackInterval();
         StartCoroutine(nameof(AttackCoroutine));
     }
+
+
 
     private void StopAttack()
     {
@@ -49,7 +50,7 @@ public class AttackComponent : MonoBehaviour
     {
         while (true)
         {
-            _weaponSwitcher.AttackWithCurrentWeapon(_rotateWeapon.GetAngle());
+            _weaponManager.AttackWithCurrentWeapon();
             yield return new WaitForSeconds(_attackInterval);
         }
     }

@@ -90,7 +90,7 @@ public class PlayerInput : ScriptableObject, InputActions.IGamePlayActions
     {
         if(context.performed)
         {
-            EventCenter.TriggerEvent("PlayerSwitchWeapon",true);
+            EventCenter.TriggerEvent("PlayerSwitchWeapon");
         }
     }
 
